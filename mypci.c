@@ -38,10 +38,10 @@ modevent( module_t mod __unused, int event, void *arg __unused)
 
   switch(event){
   case MOD_LOAD:
-    uprintf("My PCI Device has loaded\n");
+    uprintf("Mypci Device has loaded\n");
     break;
   case MOD_UNLOAD:
-    uprintf("My PCI Dev has unloaded\n");
+    uprintf("Mypci Dev has unloaded\n");
     break;
   default:
     error = EOPNOTSUPP;
