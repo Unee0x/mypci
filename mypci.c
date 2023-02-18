@@ -31,6 +31,25 @@ static struct cdevsw mypci_cdevsw = {
     .d_name = "mypci"
     };
 
+static int
+modevent( module_t mod __unused, int event, void *arg __unused)
+{
+  int error = 0;
+
+  switch(event){
+  case MOD_LOAD:
+    uprintf("My PCI Device has loaded\n");
+    break;
+  case MOD_UNLOAD:
+    uprintf("My PCI Dev has unloaded\n");
+    break;
+  default:
+    error = EOPNOTSUPP;
+    break;
+  }
+  return (error);
+}
+
 static devclass_t mypci_devclass;
 
 static int
