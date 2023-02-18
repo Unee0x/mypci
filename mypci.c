@@ -94,6 +94,17 @@ static struct _pcsid {
                {0x4321fedc, "Blue PCI Widget"},
                {0x00000000, NULL}};
 
+static int
+mypci_identify( device_t dev ){ return  (0);}
+
+static int
+mypci_shutdown(device_t dev){ return (0);}
+
+static int
+mypci_suspend( device_t dev ) { return (0);}
+
+static int
+mypci_resume( device_t dev ) { return (0);} 
 
 static int
 mypci_probe( device_t dev )
@@ -133,12 +144,17 @@ mypci_detach( device_t dev )
 }
 
 static device_method_t mypci_methods[] = {
-  /* Device Interface */
+    /* Device Interface */
 
-  DEVMETHOD( device_probe, mypci_probe ),
-  DEVMETHOD( device_attach, mypci_attach ),
-  DEVMETHOD( device_detach, mypci_detach ),
-  { 0, 0 }
+    DEVMETHOD(device_probe, mypci_probe),
+    DEVMETHOD(device_attach, mypci_attach),
+    DEVMETHOD(device_detach, mypci_detach),
+    DEVMETHOD(device_identify, mypci_identify),
+    DEVMETHOD(device_shutdown, mypci_shutdown),
+    DEVMETHOD(device_resume, mypci_resume),
+    DEVMETHOD(device_suspend, mypci_suspend),
+    
+    { 0, 0 }
 };
 
 static driver_t mypci_driver = {
